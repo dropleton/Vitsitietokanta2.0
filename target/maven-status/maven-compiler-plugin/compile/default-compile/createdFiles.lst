@@ -1,2 +1,5 @@
+vitsi/controllers/VitsiController.class
 vitsi/Main.class
 vitsi/controllers/DefaultController.class
+vitsi/repository/VitsiRepository.class
+vitsi/domain/Vitsi.class

@@ -1,2 +1,5 @@
-/home/jetolvan/NetBeansProjects/Test/src/main/java/vitsi/controllers/DefaultController.java
-/home/jetolvan/NetBeansProjects/Test/src/main/java/vitsi/Main.java
+/home/jetolvan/NetBeansProjects/Vitsitietokanta2.0/src/main/java/vitsi/Main.java
+/home/jetolvan/NetBeansProjects/Vitsitietokanta2.0/src/main/java/vitsi/domain/Vitsi.java
+/home/jetolvan/NetBeansProjects/Vitsitietokanta2.0/src/main/java/vitsi/controllers/DefaultController.java
+/home/jetolvan/NetBeansProjects/Vitsitietokanta2.0/src/main/java/vitsi/controllers/VitsiController.java
+/home/jetolvan/NetBeansProjects/Vitsitietokanta2.0/src/main/java/vitsi/repository/VitsiRepository.java
