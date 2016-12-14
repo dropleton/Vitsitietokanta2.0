@@ -8,17 +8,10 @@
     <body>
         <h1>Vitsitietokanta</h1>
 
-        <!--noClassDefFoundError allaolevasta-->
         <ul>
             <li th:each="joke : ${jokes}">
                 <span th:text="${joke.otsikko}">otsikko</span>
                 <span th:text="${joke.sisalto}">sisalto</span>
-            </li>
-        </ul>
-
-        <ul>
-            <li>
-                <a th:href="@{/jokes}">jokes</a>
             </li>
         </ul>
 
