@@ -6,10 +6,14 @@
     </head>
 
     <body>
+        
+        <a href="/logout">Kirjaudu ulos</a>
+        
         <h1>Vitsitietokanta</h1>
 
         <ul>
             <li th:each="joke : ${jokes}">
+                <a th:href="@{/jokes/{id} (id=${joke.id})}">linkki vitsiin</a>
                 <span th:text="${joke.otsikko}">otsikko</span>
                 <span th:text="${joke.sisalto}">sisalto</span>
             </li>
