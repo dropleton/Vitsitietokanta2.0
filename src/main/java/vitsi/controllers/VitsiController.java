@@ -9,14 +9,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import vitsi.domain.Kayttaja;
 import vitsi.domain.Vitsi;
+import vitsi.repository.TagiRepository;
 import vitsi.repository.VitsiRepository;
 import vitsi.service.LoggedInAccountService;
+import vitsi.service.TagiService;
 
 @Controller
 public class VitsiController {
 
     @Autowired
     private VitsiRepository vitsiRepository;
+    
+    @Autowired
+    private TagiRepository tagiRepository;
+    
+    @Autowired
+    private TagiService tagiService;
 
     @Autowired
     private LoggedInAccountService kayttajaService;
@@ -24,19 +32,26 @@ public class VitsiController {
     @RequestMapping(value = "/jokes", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("jokes", vitsiRepository.findAll());
+        model.addAttribute("allTags", tagiRepository.findAll());
         return "index";
     }
 
     @RequestMapping(value = "/jokes/{id}", method = RequestMethod.GET)
     public String show(Model model, @PathVariable Long id) {
-        model.addAttribute("joke", vitsiRepository.findOne(id));
-        return "joke";
+        Vitsi vitsi = vitsiRepository.findOne(id);
+        if (vitsi != null) {
+            model.addAttribute("joke", vitsiRepository.findOne(id));
+            return "joke";
+        } else {
+            return "redirect:/jokes";
+        }
     }
 
     @RequestMapping(value = "/jokes", method = RequestMethod.POST)
     public String add(
             @RequestParam String otsikko,
-            @RequestParam String sisalto) {
+            @RequestParam String sisalto,
+            @RequestParam String tags) {
         Kayttaja kayttaja = kayttajaService.getAuthenticatedAccount();
         if (kayttaja == null) {
             return "redirect:/error";
@@ -46,6 +61,7 @@ public class VitsiController {
         vitsi.setOtsikko(otsikko);
         vitsi.setSisalto(sisalto);
         vitsi.setKayttaja(kayttaja);
+        tagiService.addTagsToJoke(tags, vitsi);
         vitsiRepository.save(vitsi);
         return "redirect:/jokes";
     }

@@ -19,5 +19,18 @@
             <span th:text="${joke.sisalto}">Sisältö</span>
         </p>
 
+        <p>Tägit: </p>
+        <ul>
+            <li th:each="tag : ${joke.tagit}">
+                <span th:text="${tag.nimi}">Tägi</span>
+            </li>
+        </ul>
+
+
+        <p>
+            <span>Lisääjä: </span>
+            <span th:text="${joke.kayttaja.username}">Lisääjä</span>
+        </p>
+
     </body>
 </html>

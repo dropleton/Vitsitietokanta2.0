@@ -13,9 +13,7 @@
 
         <ul>
             <li th:each="joke : ${jokes}">
-                <a th:href="@{/jokes/{id} (id=${joke.id})}">linkki vitsiin</a>
-                <span th:text="${joke.otsikko}">otsikko</span>
-                <span th:text="${joke.sisalto}">sisalto</span>
+                <a th:href="@{/jokes/{id} (id=${joke.id})}" th:text="${joke.otsikko}">linkki vitsiin</a>
             </li>
         </ul>
 
@@ -24,6 +22,11 @@
         <form th:action="@{/jokes}" th:method="POST">
             <p>Otsikko: <input type="text" name="otsikko"/></p>
             <p>Sisältö: <input type="text" name="sisalto" /></p>
+            <select id="tags" name="tags" multiple="multiple">
+                <option th:each="tag : ${allTags}"
+                        th:value="${{tag}}"
+                        th:text="${tag.nimi}">Tägi</option>
+            </select>
             <input type="submit" value="Lisää"></input>
         </form>
 

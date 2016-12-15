@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Vitsitietokanta</title>
+        <meta charset="UTF-8"/>
+    </head>
+
+    <body>
+        <a href="/logout">Kirjaudu ulos</a>
+
+        <h1>Vitsitietokanta</h1>
+
+        <ul>
+            <li th:each="tag : ${tags}">
+                <span th:text="${tag.nimi}">Tagi</span>
+            </li>
+        </ul>
+        
+        <h2>Lisää uusi tägi</h2>
+        
+        <form th:action="@{/tags}" th:method="POST">
+            <p>Nimi: <input type="text" name="nimi"/></p>
+            <input type="submit" value="Lisää"></input>
+        </form>
+
+    </body>
+</html>
