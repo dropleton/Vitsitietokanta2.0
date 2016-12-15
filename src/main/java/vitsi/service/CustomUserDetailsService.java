@@ -11,7 +11,7 @@ import vitsi.domain.Kayttaja;
 import vitsi.repository.KayttajaRepository;
 
 //kommentoitu @Service, koska tämän lisääminen ei toiminut vielä, enkä halua tämän nyt sotkevan
-//@Service
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
     
     @Autowired

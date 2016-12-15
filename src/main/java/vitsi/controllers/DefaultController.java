@@ -11,25 +11,24 @@ import vitsi.repository.KayttajaRepository;
 @Controller
 public class DefaultController {
 
-    //kommentoitu, koska kirjautuminen ei toiminut tällä tavalla. Tutkitaan asiaa myöhemmin
-//    @Autowired
-//    private KayttajaRepository kayttajaRepository;
-//    
-//    @Autowired
-//    private BCryptPasswordEncoder passwordEncoder;
+//    kommentoitu, koska kirjautuminen ei toiminut tällä tavalla. Tutkitaan asiaa myöhemmin
+    @Autowired
+    private KayttajaRepository kayttajaRepository;
+    
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-//    @PostConstruct
-//    public void init() {
-//        if (kayttajaRepository.findByUsername("jenni") != null) {
-//            return;
-//        }
-//
-//        Kayttaja user = new Kayttaja();
-//        user.setUsername("jenni");
-//        user.setPassword(passwordEncoder.encode("porkkana"));
-//        user.setPassword("porkkana");
-//        user = kayttajaRepository.save(user);
-//    }
+    @PostConstruct
+    public void init() {
+        if (kayttajaRepository.findByUsername("jenni") != null) {
+            return;
+        }
+
+        Kayttaja user = new Kayttaja();
+        user.setUsername("jenni");
+        user.setPassword(passwordEncoder.encode("porkkana"));
+        kayttajaRepository.save(user);
+    }
 
     @RequestMapping("*")
     public String handleDefault() {
