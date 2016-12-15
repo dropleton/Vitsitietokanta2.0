@@ -13,6 +13,8 @@ public class Kayttaja extends AbstractPersistable<Long> {
     private String password;
     @OneToMany
     private List<Vitsi> vitsit;
+    @OneToMany
+    private List<Kommentti> kommentit;
 
     public String getUsername() {
         return username;
@@ -29,6 +31,10 @@ public class Kayttaja extends AbstractPersistable<Long> {
         return vitsit;
     }
 
+    public List<Kommentti> getKommentit() {
+        return kommentit;
+    }
+    
     public void setUsername(String username) {
         this.username = username;
     }
@@ -39,6 +45,10 @@ public class Kayttaja extends AbstractPersistable<Long> {
 
     public void setVitsit(List<Vitsi> vitsit) {
         this.vitsit = vitsit;
+    }
+
+    public void setKommentit(List<Kommentti> kommentit) {
+        this.kommentit = kommentit;
     }
 
 }
