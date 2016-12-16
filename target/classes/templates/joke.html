@@ -8,6 +8,7 @@
     <body>
 
         <a href="/logout">Kirjaudu ulos</a>
+        <a href="/jokes">Näytä vitsit</a>
 
         <h1>Vitsitietokanta</h1>
 
@@ -31,6 +32,21 @@
             <span>Lisääjä: </span>
             <span th:text="${joke.kayttaja.username}">Lisääjä</span>
         </p>
+        
+        <p>Kommentit: </p>
+        <ul>
+            <li th:each="comment : ${joke.kommentit}">
+                <span th:text="${comment.sisalto}">Kommentti</span>
+                <p>Kommentoija: </p>
+                <span th:text="${comment.kayttaja.username}">Kommentoija</span>
+            </li>
+        </ul>
+        
+        <p>Lisää uusi kommentti: </p>
+        <form th:action="@{/jokes/{id}(id=${joke.id})}" th:method="POST">
+            <input type="text" name="sisalto"/>
+            <input type="submit" value="Lisää"></input>
+        </form>
 
     </body>
 </html>
