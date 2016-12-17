@@ -3,6 +3,9 @@
     <head>
         <title>Vitsitietokanta</title>
         <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     </head>
 
     <body>
@@ -16,9 +19,9 @@
                 <span th:text="${tag.nimi}">Tagi</span>
             </li>
         </ul>
-        
+
         <h2>Lisää uusi tägi</h2>
-        
+
         <form th:action="@{/tags}" th:method="POST">
             <p>Nimi: <input type="text" name="nimi"/></p>
             <input type="submit" value="Lisää"></input>

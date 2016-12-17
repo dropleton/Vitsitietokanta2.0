@@ -2,7 +2,9 @@ package vitsi.controllers;
 
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import vitsi.domain.Kayttaja;
@@ -11,10 +13,11 @@ import vitsi.repository.KayttajaRepository;
 @Controller
 public class DefaultController {
 
-//    kommentoitu, koska kirjautuminen ei toiminut tällä tavalla. Tutkitaan asiaa myöhemmin
+    //Salasanan encryptaus poistettu käytöstä herokun virheen takia.
+    //Paikallisesti toimi vain encryptauksen kanssa. Tutkin asiaa
     @Autowired
     private KayttajaRepository kayttajaRepository;
-    
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -27,7 +30,13 @@ public class DefaultController {
         Kayttaja user = new Kayttaja();
         user.setUsername("jenni");
         user.setPassword(passwordEncoder.encode("porkkana"));
+        user.setPassword("porkkana");
         kayttajaRepository.save(user);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @RequestMapping("*")
