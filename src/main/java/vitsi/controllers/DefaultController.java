@@ -2,8 +2,6 @@ package vitsi.controllers;
 
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder; 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,12 +27,16 @@ public class DefaultController {
         user.setUsername("jenni");
         user.setPassword(passwordEncoder.encode("porkkana"));
         kayttajaRepository.save(user);
+        
+        if (kayttajaRepository.findByUsername("vierailija") != null) {
+            return;
+        }
+        
+        Kayttaja vierailija = new Kayttaja();
+        vierailija.setUsername("vierailija");
+        vierailija.setPassword(passwordEncoder.encode("salasana"));
+        kayttajaRepository.save(vierailija);
     }
-
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
     @RequestMapping("*")
     public String handleDefault() {
