@@ -13,13 +13,11 @@ import vitsi.repository.KayttajaRepository;
 @Controller
 public class DefaultController {
 
-    //Salasanan encryptaus poistettu käytöstä herokun virheen takia.
-    //Paikallisesti toimi vain encryptauksen kanssa. Tutkin asiaa
     @Autowired
     private KayttajaRepository kayttajaRepository;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void init() {
@@ -30,14 +28,13 @@ public class DefaultController {
         Kayttaja user = new Kayttaja();
         user.setUsername("jenni");
         user.setPassword(passwordEncoder.encode("porkkana"));
-        user.setPassword("porkkana");
         kayttajaRepository.save(user);
     }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public BCryptPasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @RequestMapping("*")
     public String handleDefault() {
